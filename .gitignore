@@ -4,3 +4,6 @@ sine_generator
 sweep_generator
 test_edflib
 test_generator
+*.dll
+*.lib
+*.vs
