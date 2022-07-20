@@ -11,3 +11,5 @@ test_generator
 *.json
 **/bin
 **/obj
+**/x64
+**/logs
