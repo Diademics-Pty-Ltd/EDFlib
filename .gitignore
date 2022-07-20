@@ -7,3 +7,7 @@ test_generator
 *.dll
 *.lib
 *.vs
+*.pdb
+*.json
+bin\
+obj\
