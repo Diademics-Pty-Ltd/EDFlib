@@ -9,5 +9,5 @@ test_generator
 *.vs
 *.pdb
 *.json
-bin\
-obj\
+**/bin
+**/obj
