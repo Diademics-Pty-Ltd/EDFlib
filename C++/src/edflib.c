@@ -33,7 +33,7 @@
 
 /* compile with options "-D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE" */
 
-#include "edflib.h"
+#include "../inc/edflib.h"
 
 #define EDFLIB_VERSION  (122)
 #define EDFLIB_MAXFILES  (64)
@@ -276,9 +276,9 @@ int edfopen_file_readonly(const char *path, struct edf_hdr_struct *edfhdr, int r
     {
       if(!(strcmp(path, hdrlist[i]->path)))
       {
-        edfhdr->filetype = EDFLIB_FILE_ALREADY_OPENED;
+        //edfhdr->filetype = EDFLIB_FILE_ALREADY_OPENED;
 
-        return -1;
+        //return -1;
       }
     }
   }
