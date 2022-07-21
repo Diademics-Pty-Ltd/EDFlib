@@ -1,7 +1,4 @@
 ﻿using EDFlibCS.Internal;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace EDFlibCS
@@ -16,7 +13,7 @@ namespace EDFlibCS
         //private double _physicalMin;
         //private int _digitalMax;
         //private int _digitalMin;
-        //private int _samplesInDataRecord;
+        private int _samplesInDataRecord;
         //private string _physicalDimension;
         //private string _prefilter;
         //private string _transducer;
@@ -24,21 +21,21 @@ namespace EDFlibCS
         //// derived parameters
         //private double _bitValue;
         //private double _offset;
+        private double _samplingRate;
 
         public string Label => _label;
+        public int SamplesInDataRecord => _samplesInDataRecord;
+        public double SamplingRate => _samplingRate;
 
-
-        public EdfSignalParameters(EdfReader edfReader, int signalIndex)
+        public EdfSignalParameters(EdfReader edfReader, EdfHeader header, int signalIndex)
         {
-            try
-            {
-                _ = DllHandler.getSignalLabel(edfReader.Obj, signalIndex, _bytes);
-                _label = Encoding.ASCII.GetString(_bytes).Split(' ')[0];
-            }
-            catch(Exception)
-            {
-                ;
-            }
+            _ = DllHandler.getSignalLabel(edfReader.Obj, signalIndex, _bytes);
+            var labelParts = Encoding.ASCII.GetString(_bytes).Split(' ');
+            foreach (var part in labelParts)
+                _label += part;
+            _label = _label!.Split('\0')[0];
+            _ = DllHandler.getSignalSamplesInDataRecord(edfReader.Obj, signalIndex, out _samplesInDataRecord);
+            _samplingRate = _samplesInDataRecord / header.DataRecordDuration;
         }
 
 

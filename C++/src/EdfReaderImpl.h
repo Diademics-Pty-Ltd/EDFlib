@@ -9,23 +9,15 @@ namespace EDFlib
 	{
 	private:
 		struct edf_hdr_struct m_header;
-		std::vector<std::vector<double>> m_vvdPhysicalSampleBuffer;
-
-		void Error(int error)
-		{
-			if (error == 0)return;
-			switch (error)
-			{
-			default:
-				return;
-			}
-		}
 
 	public:
 		EdfReaderImpl(const char* path, int readAnnotations = EDFLIB_DO_NOT_READ_ANNOTATIONS);
 		int getHeaderSignalCount(void);
 		long long getHeaderDataRecordDuration(void);
 		std::string getSignalLabel(int nSignalIndex);
-		void ReadPhysicalSamples(int nSignal, int nSampleCount, double* buffer);
+		int getSignalSamplesInDataRecord(int nSignalIndex);
+		int ReadPhysicalSamples(int nSignal, int nSampleCount, double* buffer);
+		void getSamplePosition(int nSignal, long long* pnPosition);
+		void setSamplePosition(int nSignal, long long nPosition);
 	};
 }

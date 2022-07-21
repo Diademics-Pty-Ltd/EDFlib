@@ -29,7 +29,7 @@ namespace EDFlibCS
             _ = DllHandler.getHeaderDataRecordDuration(edfReader.Obj, out ulong duration);
             _dataRecordDuration = duration / EdfLibTimeDimension;
             for (int i = 0; i < _signalCount; i++)
-                _edfSignalParameters.Add(new EdfSignalParameters(edfReader, i));
+                _edfSignalParameters.Add(new EdfSignalParameters(edfReader, this, i));
         }
 
         // for use with EdfWriter objects

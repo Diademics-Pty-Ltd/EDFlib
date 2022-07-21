@@ -20,6 +20,15 @@ namespace EDFlibCS.Internal
         public static extern int getSignalLabel(IntPtr reader, int signalIndex, byte[] label);
 
         [DllImport(libname, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = true)]
+        public static extern int getSignalSamplesInDataRecord(IntPtr reader, int signalIndex, out int samplesInDataRecord);
+        
+        [DllImport(libname, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = true)]
         public static extern  int ReadPhysicalSamples(IntPtr obj, int signalIndex, int sampleCount, double[] samples);
+
+        [DllImport(libname, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = true)]
+        public static extern int getSamplePosition(IntPtr obj, int signalIndex, out ulong samplePosition);
+
+        [DllImport(libname, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = true)]
+        public static extern int setSamplePosition(IntPtr obj, int signalIndex, ulong samplePosition);
     }
 }

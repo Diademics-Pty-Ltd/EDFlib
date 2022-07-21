@@ -46,9 +46,12 @@ extern EDFLIB_API int getHeaderDataRecordDuration(EdfReader obj, long long* pnSi
 
 // signal params parsing
 extern EDFLIB_API int getSignalLabel(EdfReader obj, int nSignalIndex, char* pLabel);
+extern EDFLIB_API int getSignalSamplesInDataRecord(EdfReader obj, int nSignalIndex, int* pnSamplesInDataRecord);
 
 // data reading
-extern EDFLIB_API int ReadPhysicalSamples(EdfReader obj, int nSignal, int nSamples, double* pdBuffer);
+extern EDFLIB_API int ReadPhysicalSamples(EdfReader obj, int nSignal, int nSampleCount, double* pdBuffer);
+extern EDFLIB_API int getSamplePosition(EdfReader obj, int nSignal, long long* pnPosition);
+extern EDFLIB_API int setSamplePosition(EdfReader obj, int nSignal, long long nPosition);
 
 #ifdef __cplusplus
 } /* end extern "C" */

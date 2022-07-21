@@ -45,9 +45,6 @@ extern "C" {
 		try
 		{
 			strcpy(pLabel, ((EdfReaderImpl*)obj)->getSignalLabel(nSignalIndex).c_str());
-			//std::string label = std::string(((EdfReaderImpl*)obj)->getSignalLabel(nSignalIndex).c_str());
-			//for (int i = 0; i < 17; i++)
-			//	pLabel[i] = label[i];
 		}
 		catch (std::exception ex)
 		{
@@ -56,13 +53,52 @@ extern "C" {
 		return 0;
 	}
 
-
-	// data reading
-	EDFLIB_API int ReadPhysicalSamples(EdfReader obj, int nSignal, int nSamples, double* pdBuffer)
+	EDFLIB_API int getSignalSamplesInDataRecord(EdfReader obj, int nSignalIndex, int* pnSamplesInDataRecord)
 	{
 		try
 		{
-			((EdfReaderImpl*)obj)->ReadPhysicalSamples(nSignal, nSamples, pdBuffer);
+			*pnSamplesInDataRecord =  ((EdfReaderImpl*)obj)->getSignalSamplesInDataRecord(nSignalIndex);
+		}
+		catch (std::exception ex)
+		{
+
+		}
+		return 0;
+	}
+
+	// data reading
+	EDFLIB_API int ReadPhysicalSamples(EdfReader obj, int nSignal, int nSampleCount, double* pdBuffer)
+	{
+		int nSamplesRead = -1;
+		try
+		{
+			nSamplesRead = ((EdfReaderImpl*)obj)->ReadPhysicalSamples(nSignal, nSampleCount, pdBuffer);
+		}
+		catch (std::exception ex)
+		{
+
+		}
+		return nSamplesRead;
+	}
+
+	EDFLIB_API int getSamplePosition(EdfReader obj, int nSignal, long long* pnPosition)
+	{
+		try
+		{
+			((EdfReaderImpl*)obj)->getSamplePosition(nSignal, pnPosition);
+		}
+		catch (std::exception ex)
+		{
+
+		}
+		return 0;
+	}
+
+	EDFLIB_API int setSamplePosition(EdfReader obj, int nSignal, long long nPosition)
+	{
+		try
+		{
+			((EdfReaderImpl*)obj)->setSamplePosition(nSignal, nPosition);
 		}
 		catch (std::exception ex)
 		{
